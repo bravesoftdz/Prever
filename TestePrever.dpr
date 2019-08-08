@@ -4,7 +4,8 @@ uses
   System.StartUpCopy,
   FMX.Forms,
   uPrincipal in 'uPrincipal.pas' {PrincipalFrm},
-  uFrase in 'uFrase.pas';
+  uFrase in 'uFrase.pas',
+  uCombinacao in 'uCombinacao.pas';
 
 {$R *.res}
 
