@@ -6,17 +6,28 @@ type
   TFrase = class
   private
     const ESPACO = ' ';
-
-    var FQuantidadeEspacos: integer;
   public
     function VerificarMaiorPalavra(psFrase: string): string;
-    function VerificarQuantidadePalindromos(psPalavra, psFrase: string): string;
+    function VerificarPalindromo(psPalavra, psFrase: string): string;
   end;
 
 implementation
 
 uses
   Classes, SysUtils, StrUtils;
+
+function RemoveAcento(aText : string) : string;
+const
+  ComAcento = '‡‚ÍÙ˚„ı·ÈÌÛ˙Á¸Ò˝¿¬ ‘€√’¡…Õ”⁄«‹—›';
+  SemAcento = 'aaeouaoaeioucunyAAEOUAOAEIOUCUNY';
+var
+  x: Cardinal;
+begin;
+  for x := 1 to Length(aText) do
+    if (Pos(aText[x], ComAcento) <> 0) then
+      aText[x] := SemAcento[ Pos(aText[x], ComAcento) ];
+  Result := aText;
+end;
 
 function TFrase.VerificarMaiorPalavra(psFrase: string): string;
 var
@@ -34,32 +45,22 @@ begin
   end;
 end;
 
-function TFrase.VerificarQuantidadePalindromos(psPalavra, psFrase: string): string;
+function TFrase.VerificarPalindromo(psPalavra, psFrase: string): string;
 var
-  iContador, j, iQuantidadeEspacos, iPosicaoEspaco: Integer;
-  sPalavraAux, sPalavraAux2, sFraseReversa: string;
-  bTemEspaco: boolean;
-  qtAux: integer;
+  slListapalavras: TStringList;
+  iContador: Integer;
 begin
-  sFraseReversa := ReverseString(psFrase);
-  for iContador := 0 to Pred(sFraseReversa.Length) do
-  begin
-    sPalavraAux := sFraseReversa.Substring(iContador, psPalavra.Length);
-
-    iQuantidadeEspacos := 0;
-    qtAux := sPalavraAux.CountChar(' ');
-    while qtAux > 0 do
-    begin
-      Delete(sPalavraAux, sPalavraAux.IndexOf(' ')+1, 1);
-      Inc(iQuantidadeEspacos);
-      sPalavraAux := sPalavraAux + Copy(sFraseReversa, iContador + sPalavraAux.Length + iQuantidadeEspacos, iQuantidadeEspacos);
-      qtAux := sPalavraAux.CountChar(' ');
-    end;
-
-{    sPalavraAux := sPalavraAux.Replace(ESPACO, EmptyStr);
-    sPalavraAux := Copy(sPalavraAux, 0, psPalavra.Length);}
-    if UpperCase(sPalavraAux) = UpperCase(psPalavra.Replace(ESPACO, EmptyStr)) then
-      Result := Result + sLineBreak + psFrase.Substring(iContador-psPalavra.Length);
+  slListapalavras := TStringList.Create;
+  try
+    slListapalavras.Text := ReverseString(psFrase).Replace(ESPACO, sLineBreak);
+    for iContador := 0 to Pred(slListapalavras.Count) do
+      if UpperCase(RemoveAcento(psPalavra)) = UpperCase(RemoveAcento(slListapalavras[iContador])) then
+      begin
+        Result := ReverseString(slListapalavras[iContador]);
+        break;
+      end;
+  finally
+    FreeAndNil(slListapalavras);
   end;
 end;
 

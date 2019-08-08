@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Controls.Presentation, FMX.Edit, uFrase, FMX.Layouts, FMX.Memo;
+  FMX.Controls.Presentation, FMX.Edit, uFrase, FMX.Layouts;
 
 type
   TPrincipalFrm = class(TForm)
@@ -13,7 +13,6 @@ type
     BtnMaiorPalavra: TButton;
     BtnQuantidadePalindromos: TButton;
     EdtPalavra: TEdit;
-    Memo1: TMemo;
     procedure BtnMaiorPalavraClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -30,6 +29,9 @@ var
 
 implementation
 
+uses
+  StrUtils;
+
 {$R *.fmx}
 
 procedure TPrincipalFrm.BtnMaiorPalavraClick(Sender: TObject);
@@ -39,13 +41,15 @@ end;
 
 procedure TPrincipalFrm.BtnQuantidadePalindromosClick(Sender: TObject);
 var
-  I: Integer;
+  sResultado: string;
 begin
-{  ShowMessage(Format('Palíndromos da palavra "%s": %s', [
-    EdtPalavra.Text,
-    FFrase.VerificarQuantidadePalindromos(EdtPalavra.Text, EdtFrase.Text)]));}
+  sResultado := FFrase.VerificarPalindromo(EdtPalavra.Text, EdtFrase.Text);
 
-  Memo1.Lines.Add(FFrase.VerificarQuantidadePalindromos(EdtPalavra.Text, EdtFrase.Text));
+  if sResultado.Length > 0 then
+    ShowMessage(Format('Encontrado o palíndromo "%s" da palavra "%s" na lista de palavras: %s"%s"', [
+    sResultado, EdtPalavra.Text, sLineBreak, EdtFrase.Text]))
+  else
+    ShowMessage(Format('Não encontrado o palíndromo da palavra "%s"', [EdtPalavra.Text]));
 end;
 
 procedure TPrincipalFrm.FormCreate(Sender: TObject);

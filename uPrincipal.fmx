@@ -2,8 +2,8 @@ object PrincipalFrm: TPrincipalFrm
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 299
-  ClientWidth = 325
+  ClientHeight = 191
+  ClientWidth = 433
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -14,14 +14,13 @@ object PrincipalFrm: TPrincipalFrm
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     Align = Top
     TabOrder = 1
-    Text = 'Socorram me subi no onibus em marrocos'
     Position.X = 10.000000000000000000
     Position.Y = 10.000000000000000000
     Margins.Left = 10.000000000000000000
     Margins.Top = 10.000000000000000000
     Margins.Right = 10.000000000000000000
     Margins.Bottom = 10.000000000000000000
-    Size.Width = 305.000000000000000000
+    Size.Width = 413.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TextPrompt = 'Escreva uma frase...'
@@ -34,7 +33,7 @@ object PrincipalFrm: TPrincipalFrm
     Margins.Bottom = 10.000000000000000000
     Position.X = 10.000000000000000000
     Position.Y = 94.000000000000000000
-    Size.Width = 305.000000000000000000
+    Size.Width = 413.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
@@ -49,7 +48,7 @@ object PrincipalFrm: TPrincipalFrm
     Margins.Bottom = 10.000000000000000000
     Position.X = 10.000000000000000000
     Position.Y = 136.000000000000000000
-    Size.Width = 305.000000000000000000
+    Size.Width = 413.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
@@ -60,25 +59,15 @@ object PrincipalFrm: TPrincipalFrm
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     Align = Top
     TabOrder = 0
-    Text = 'onibus'
     Position.X = 10.000000000000000000
     Position.Y = 52.000000000000000000
     Margins.Left = 10.000000000000000000
     Margins.Top = 10.000000000000000000
     Margins.Right = 10.000000000000000000
     Margins.Bottom = 10.000000000000000000
-    Size.Width = 305.000000000000000000
+    Size.Width = 413.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TextPrompt = 'Escreva uma palavra...'
-  end
-  object Memo1: TMemo
-    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-    Position.X = 24.000000000000000000
-    Position.Y = 168.000000000000000000
-    Size.Width = 193.000000000000000000
-    Size.Height = 105.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 4
   end
 end
